@@ -1,0 +1,14 @@
+P:\LC TECH\DEV\Creator.Components\obj\Debug\netcoreapp3.1\Creator.Components.csprojAssemblyReference.cache
+P:\LC TECH\DEV\Creator.Components\obj\Debug\netcoreapp3.1\Creator.Components.AssemblyInfoInputs.cache
+P:\LC TECH\DEV\Creator.Components\obj\Debug\netcoreapp3.1\Creator.Components.AssemblyInfo.cs
+P:\LC TECH\DEV\Creator.Components\obj\Debug\netcoreapp3.1\Creator.Components.csproj.CoreCompileInputs.cache
+P:\LC TECH\DEV\Creator.Components\bin\Debug\netcoreapp3.1\Creator.Components.deps.json
+P:\LC TECH\DEV\Creator.Components\bin\Debug\netcoreapp3.1\Creator.Components.dll
+P:\LC TECH\DEV\Creator.Components\bin\Debug\netcoreapp3.1\Creator.Components.pdb
+P:\LC TECH\DEV\Creator.Components\bin\Debug\netcoreapp3.1\LC.Components.Core.dll
+P:\LC TECH\DEV\Creator.Components\bin\Debug\netcoreapp3.1\LC.Components.dll
+P:\LC TECH\DEV\Creator.Components\bin\Debug\netcoreapp3.1\LC.Components.Core.pdb
+P:\LC TECH\DEV\Creator.Components\bin\Debug\netcoreapp3.1\LC.Components.pdb
+P:\LC TECH\DEV\Creator.Components\obj\Debug\netcoreapp3.1\Creator.Components.csproj.CopyComplete
+P:\LC TECH\DEV\Creator.Components\obj\Debug\netcoreapp3.1\Creator.Components.dll
+P:\LC TECH\DEV\Creator.Components\obj\Debug\netcoreapp3.1\Creator.Components.pdb

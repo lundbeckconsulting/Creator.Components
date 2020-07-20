@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Version>1.0.0.1</Version>
     <Authors>Stein Lundbeck</Authors>
@@ -18,6 +18,7 @@
     <NeutralLanguage>English</NeutralLanguage>
     <PackageIcon>lc-logo-md.png</PackageIcon>
     <PackageReleaseNotes>First official release</PackageReleaseNotes>
+    <ApplicationIcon>creator-logo.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,6 +30,11 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LC.Components.Core\LC.Components.Core.csproj" />
+    <ProjectReference Include="..\LC.Components\LC.Components.csproj" />
   </ItemGroup>
 
 </Project>
