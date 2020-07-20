@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace Creator.Components.TagHelpers.Icon
 {
@@ -355,6 +356,13 @@ namespace Creator.Components.TagHelpers.Icon
         public TagFormMethods FormMethod { get; set; } = TagFormMethods.Post;
 
         /// <summary>
+        /// Indicates if to wrap the tag in a form when output format is set to Button
+        /// </summary>
+        /// <remarks>Default is true</remarks>
+        [HtmlAttributeName("create-form")]
+        public bool CreateForm { get; set; } = true;
+
+        /// <summary>
         /// The color profile to apply the symbol
         /// </summary>
         [HtmlAttributeName("color")]
@@ -377,12 +385,6 @@ namespace Creator.Components.TagHelpers.Icon
         /// </summary>
         [HtmlAttributeName("target")]
         public TagAnchorTargets Target { get; set; } = TagAnchorTargets.None;
-
-        /// <summary>
-        /// The type of icon set
-        /// </summary>
-        [HtmlAttributeName("type")]
-        public IconSets Type { get; set; } = IconSets.FontAwesome;
 
         /// <summary>
         /// The shape of a Friconix icon
