@@ -8,7 +8,7 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <license type="expression">MIT</license>
     <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
-    <icon>lc-logo-md.png</icon>
+    <icon>creator-logo-sm.png</icon>
     <projectUrl>https://getcreatorframework.com/</projectUrl>
     <description>Custom tag helpers that implements styles from Creator and other elments</description>
     <releaseNotes>First official release</releaseNotes>
@@ -29,6 +29,6 @@
   </metadata>
   <files>
     <file src="P:\LC TECH\DEV\Creator.Components\bin\Debug\netcoreapp3.1\Creator.Components.dll" target="lib\netcoreapp3.1\Creator.Components.dll" />
-    <file src="P:\LC TECH\Misc\LC.Shared\IMAGE\lc-logo-md.png" target="lc-logo-md.png" />
+    <file src="P:\LC TECH\Misc\LC.Shared\IMAGE\creator-logo-sm.png" target="creator-logo-sm.png" />
   </files>
 </package>

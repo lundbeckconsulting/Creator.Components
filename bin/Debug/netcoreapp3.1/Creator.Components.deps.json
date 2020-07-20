@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "Creator.Components/1.0.0.1": {
+      "Creator.Components/1.0.0.2-beta": {
         "dependencies": {
           "LC.Components": "1.0.2",
           "LC.Components.Core": "1.0.2"
@@ -1853,7 +1853,7 @@
     }
   },
   "libraries": {
-    "Creator.Components/1.0.0.1": {
+    "Creator.Components/1.0.0.2-beta": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

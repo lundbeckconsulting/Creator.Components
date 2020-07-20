@@ -2,23 +2,25 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>1.0.0.1</Version>
+    <Version>1.0.0.2-beta</Version>
     <Authors>Stein Lundbeck</Authors>
     <Company>Lundbeck Consulting</Company>
     <Product>Custom .NET Core elements by Creator framework</Product>
     <Description>Custom tag helpers that implements styles from Creator and other elments</Description>
     <Copyright>2020</Copyright>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseExpression></PackageLicenseExpression>
     <PackageProjectUrl>https://getcreatorframework.com</PackageProjectUrl>
     <RepositoryUrl>https://github.com/lundbeckconsulting/Creator.Components</RepositoryUrl>
     <RepositoryType>.NET Core class library</RepositoryType>
     <PackageTags>Lundbeck Consulting, Creator, .NET Core, TagHelpers, Responsive Framework, open source</PackageTags>
     <NeutralLanguage>English</NeutralLanguage>
-    <PackageIcon>lc-logo-md.png</PackageIcon>
+    <PackageIcon>creator-logo-sm.png</PackageIcon>
     <PackageReleaseNotes>First official release</PackageReleaseNotes>
     <ApplicationIcon>creator-logo.ico</ApplicationIcon>
+    <AssemblyVersion>1.0.0.2</AssemblyVersion>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,7 +28,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\Misc\LC.Shared\IMAGE\lc-logo-md.png">
+    <None Include="..\..\Misc\LC.Shared\IMAGE\creator-logo-sm.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="LICENSE.md">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
