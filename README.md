@@ -16,10 +16,11 @@ This library contains usefull functionality for [.NET ASP.NET Core](https://dotn
 
 ## Tag Helpers
 
-The library contains two _tag helpers_:
+The library contains the _tag helpers_:
 
 * Dialog
 * Icon
+* ImageOver
 
 ## Dialog
 
@@ -157,3 +158,17 @@ Use attribute _color_ with one of the values:
 * Antan
 * Notify
 * Funk
+
+## ImageOver
+
+Creates an image tag that changes image src when the cursor is over the image.
+
+### Source
+
+Set the path to the file in the *src* attribute
+
+### Image over source
+
+The source for the image to display on mouse over is automatically set to src**-over**.jpg
+
+> Example: menu-one.jpg => menu-one-over.jpg
