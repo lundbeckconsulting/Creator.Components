@@ -16,7 +16,7 @@
     <RepositoryType>.NET Core class library</RepositoryType>
     <PackageTags>Lundbeck Consulting, Creator, .NET Core, TagHelpers, Responsive Framework, open source</PackageTags>
     <NeutralLanguage>English</NeutralLanguage>
-    <PackageIcon>creator-logo-sm.png</PackageIcon>
+    <PackageIcon>creator-components-logo-sm.png</PackageIcon>
     <PackageReleaseNotes>First official release</PackageReleaseNotes>
     <ApplicationIcon>creator-logo.ico</ApplicationIcon>
     <AssemblyVersion>1.0.0.2</AssemblyVersion>
@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\Misc\LC.Shared\IMAGE\creator-logo-sm.png">
+    <None Include="..\..\Misc\LC.Shared\IMAGE\creator-components-logo-sm.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
