@@ -1,4 +1,4 @@
-# Creator.Components
+# ![Creator Components logo](http://shared.lundbeckconsulting.com/image/creator-components-logo-sm.png) Creator.Components
 
 Custom .NET Core elements by Creator framework.
 
