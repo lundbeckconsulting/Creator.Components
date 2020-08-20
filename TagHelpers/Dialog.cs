@@ -35,7 +35,7 @@ namespace Creator.Components.TagHelpers
 
         private ITagBuilderCustom GetTag()
         {
-            ITagBuilderCustom result = new TagBuilderCustom("dialog", ContentPositions.PostElement, TagRenderMode.Normal, true, new string[] { "id", "style", "class" }, false, true);
+            ITagBuilderCustom result = new TagBuilderCustom("dialog", ContentPosition.PostElement, TagRenderMode.Normal, true, new string[] { "id", "style", "class" }, false, true);
             TagBuilder content = new TagBuilder("content");
             TagBuilder header = new TagBuilder("header");
             TagBuilder title = new TagBuilder("span");

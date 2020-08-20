@@ -37,19 +37,19 @@ namespace Creator.Components.TagHelpers.Icon
         {
             await base.PreProcess(context, output);
 
-            if (this.Symbol != FontAwesomeIcons.None)
+            if (this.Symbol != FontAwesomeIcon.None)
             {
                 AddContent(GetFontAwesomeTag());
             }
-            else if (this.FriconixSymbol != FriconixIcons.None)
+            else if (this.FriconixSymbol != FriconixIcon.None)
             {
                 AddContent(GetFriconixTag());
             }
-            else if (this.CaptainIconSymbol != CaptainIcons.None)
+            else if (this.CaptainIconSymbol != CaptainIcon.None)
             {
                 AddContent(GetCaptainIconTag());
             }
-            else if (this.DevIconSymbol != DevIcons.None)
+            else if (this.DevIconSymbol != DevIcon.None)
             {
                 AddContent(GetDevIconTag());
             }
@@ -63,7 +63,7 @@ namespace Creator.Components.TagHelpers.Icon
 
         private ITagBuilderCustom GetDevIconTag()
         {
-            if (this.DevIconSymbol == DevIcons.None)
+            if (this.DevIconSymbol == DevIcon.None)
             {
                 throw new ArgumentException("DevIcon icon not set");
             }
@@ -79,7 +79,7 @@ namespace Creator.Components.TagHelpers.Icon
         {
             IIconRecord icon = _iconHelper.GetIcon(this.Symbol);
 
-            if (this.Symbol == FontAwesomeIcons.None)
+            if (this.Symbol == FontAwesomeIcon.None)
             {
                 throw new ArgumentException("FontAwesome icon not set");
             }
@@ -94,7 +94,7 @@ namespace Creator.Components.TagHelpers.Icon
         {
             IIconRecord icon = _iconHelper.GetIcon(this.FriconixSymbol);
 
-            if (this.FriconixSymbol == FriconixIcons.None)
+            if (this.FriconixSymbol == FriconixIcon.None)
             {
                 throw new ArgumentException("Friconix icon not set");
             }
@@ -104,33 +104,33 @@ namespace Creator.Components.TagHelpers.Icon
             tag.AddCssClass($"fi-{GetShape(this.Shape)}{GetThickness(this.Thickness)}{GetStyle(this.FriconixStyle)}{GetDirection(this.Direction)}{GetEffect(this.Effect)}{_iconHelper.GetSize(this.Size).FriconixSize}-{icon.Name.ToLower()}");
 
             #region Misc Friconix functions
-            char GetShape(FriconixShapes shape)
+            char GetShape(FriconixShape shape)
             {
                 char result = 'x';
 
                 switch (shape)
                 {
-                    case FriconixShapes.Triangle:
+                    case FriconixShape.Triangle:
                         result = 't';
                         break;
 
-                    case FriconixShapes.Equilateral:
+                    case FriconixShape.Equilateral:
                         result = 'e';
                         break;
 
-                    case FriconixShapes.Circle:
+                    case FriconixShape.Circle:
                         result = 'c';
                         break;
 
-                    case FriconixShapes.Square:
+                    case FriconixShape.Square:
                         result = 's';
                         break;
 
-                    case FriconixShapes.Hexagon:
+                    case FriconixShape.Hexagon:
                         result = 'h';
                         break;
 
-                    case FriconixShapes.Octagon:
+                    case FriconixShape.Octagon:
                         result = 'o';
                         break;
                 }
@@ -242,7 +242,7 @@ namespace Creator.Components.TagHelpers.Icon
         {
             IIconRecord icon = _iconHelper.GetIcon(this.CaptainIconSymbol);
 
-            if (this.CaptainIconSymbol == CaptainIcons.None)
+            if (this.CaptainIconSymbol == CaptainIcon.None)
             {
                 throw new ArgumentException("Captain Icon not set");
             }
@@ -258,30 +258,12 @@ namespace Creator.Components.TagHelpers.Icon
         private ITagBuilderCustom GetWrapTag(ITagBuilderCustom iconTag)
         {
             ITagBuilderCustom result = new TagBuilderCustom(_iconHelper.GetFormatTagName(this.Format), false);
-            result.AddCssClass("icon-wrap");
-            result.AddCssClass("flex-center-center");
-            result.AddCssClass(this.GetColorProfile());
+            result.AddCssClassRange("creator-icon", "flex-center-center", this.GetColorProfile());
             result.ConsumeAttributes = true;
             result.AddChild(iconTag);
 
-            if (Symbol != FontAwesomeIcons.None)
-            {
-                result.AddCssClass("fa-icon");
-            }
-            else if (FriconixSymbol != FriconixIcons.None)
-            {
-                result.AddCssClass("fi-icon");
-            }
-            else if (CaptainIconSymbol != CaptainIcons.None)
-            {
-                result.AddCssClass("ci-icon");
-            }
-            else if (DevIconSymbol != DevIcons.None)
-            {
-                result.AddCssClass("di-icon");
-            }
 
-            if (this.Format == IconOutputFormats.Anchor)
+            if (this.Format == IconOutputFormat.Anchor)
             {
                 result = _iconHelper.ProcessAnchorTag(result, this.Href, this.Target);
             }
@@ -300,14 +282,14 @@ namespace Creator.Components.TagHelpers.Icon
 
         private string GetColorProfile()
         {
-            string color = this.ColorProfile.ToString().ToLower();
+            string color = this.ColorProfile.ToString();
 
             switch (this.Symbol)
             {
-                case FontAwesomeIcons.Close:
-                case FontAwesomeIcons.CloseFull:
-                case FontAwesomeIcons.CloseCircle:
-                case FontAwesomeIcons.CloseCircleFull:
+                case FontAwesomeIcon.Close:
+                case FontAwesomeIcon.CloseFull:
+                case FontAwesomeIcon.CloseCircle:
+                case FontAwesomeIcon.CloseCircleFull:
                     color = CreatorColorProfiles.Danger.ToString();
                     break;
             }
@@ -320,22 +302,22 @@ namespace Creator.Components.TagHelpers.Icon
         /// Name of the icon to use with Type equal FontAwesome
         /// </summary>
         [HtmlAttributeName("symbol")]
-        public FontAwesomeIcons Symbol { get; set; } = FontAwesomeIcons.None;
+        public FontAwesomeIcon Symbol { get; set; } = FontAwesomeIcon.None;
 
         /// <summary>
         /// Name of icon in the Friconix set of icons. Overrides FontAwesome if set
         /// </summary>
         [HtmlAttributeName("fi-symbol")]
-        public FriconixIcons FriconixSymbol { get; set; } = FriconixIcons.None;
+        public FriconixIcon FriconixSymbol { get; set; } = FriconixIcon.None;
 
         /// <summary>
         /// Name of icon in the Captain Icon set of icons. Overrides FontAwesome and Friconix if set
         /// </summary>
         [HtmlAttributeName("ci-symbol")]
-        public CaptainIcons CaptainIconSymbol { get; set; } = CaptainIcons.None;
+        public CaptainIcon CaptainIconSymbol { get; set; } = CaptainIcon.None;
 
         [HtmlAttributeName("di-symbol")]
-        public DevIcons DevIconSymbol { get; set; } = DevIcons.None;
+        public DevIcon DevIconSymbol { get; set; } = DevIcon.None;
 
         /// <summary>
         /// Text to appear to the right of the icon
@@ -347,13 +329,13 @@ namespace Creator.Components.TagHelpers.Icon
         /// Output format of Font Awesome icon
         /// </summary>
         [HtmlAttributeName("format")]
-        public IconOutputFormats Format { get; set; } = IconOutputFormats.Italic;
+        public IconOutputFormat Format { get; set; } = IconOutputFormat.Italic;
 
         /// <summary>
         /// The method of button if Symbol Output is button
         /// </summary>
         [HtmlAttributeName("form-method")]
-        public TagFormMethods FormMethod { get; set; } = TagFormMethods.Post;
+        public TagFormMethod FormMethod { get; set; } = TagFormMethod.Post;
 
         /// <summary>
         /// Indicates if to wrap the tag in a form when output format is set to Button
@@ -372,7 +354,7 @@ namespace Creator.Components.TagHelpers.Icon
         /// Type of button if format is button
         /// </summary>
         [HtmlAttributeName("button")]
-        public TagButtonTypes ButtonType { get; set; } = TagButtonTypes.Submit;
+        public TagButtonType ButtonType { get; set; } = TagButtonType.Submit;
 
         /// <summary>
         /// Anchor href value if format is anchor
@@ -384,13 +366,13 @@ namespace Creator.Components.TagHelpers.Icon
         /// Anchor target value if format er anchor
         /// </summary>
         [HtmlAttributeName("target")]
-        public TagAnchorTargets Target { get; set; } = TagAnchorTargets.None;
+        public TagAnchorTarget Target { get; set; } = TagAnchorTarget.None;
 
         /// <summary>
         /// The shape of a Friconix icon
         /// </summary>
         [HtmlAttributeName("shape")]
-        public FriconixShapes Shape { get; set; } = FriconixShapes.None;
+        public FriconixShape Shape { get; set; } = FriconixShape.None;
 
         /// <summary>
         /// The direction of a Friconix icon
@@ -420,7 +402,7 @@ namespace Creator.Components.TagHelpers.Icon
         /// Icon size
         /// </summary>
         [HtmlAttributeName("size")]
-        public IconSizes Size { get; set; } = IconSizes.Normal;
+        public IconSize Size { get; set; } = IconSize.Normal;
         #endregion
     }
 }

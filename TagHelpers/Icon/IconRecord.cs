@@ -25,22 +25,27 @@ namespace Creator.Components.TagHelpers.Icon
         /// <summary>
         /// Friconix icon
         /// </summary>
-        FriconixIcons FriconixIcon { get; set; }
+        FriconixIcon FriconixIcon { get; set; }
 
         /// <summary>
         /// FontAwesome icon
         /// </summary>
-        FontAwesomeIcons FontAwesomeIcon { get; set; }
+        FontAwesomeIcon FontAwesomeIcon { get; set; }
 
         /// <summary>
         /// Captain Icon icon
         /// </summary>
-        CaptainIcons CaptainIcon { get; set; }
+        CaptainIcon CaptainIcon { get; set; }
+
+        /// <summary>
+        /// Code for Captain Icon
+        /// </summary>
+        string CaptainIconCode { get; set; }
 
         /// <summary>
         /// DevIcon icon
         /// </summary>
-        DevIcons DevIcon { get; set; }
+        DevIcon DevIcon { get; set; }
     }
 
     /// <summary>
@@ -54,7 +59,7 @@ namespace Creator.Components.TagHelpers.Icon
         /// <param name="icon">Type of icon</param>
         /// <param name="name">Name of icon</param>
         /// <param name="fontAwesomePrefix">Icon prefix</param>
-        public IconRecord(FontAwesomeIcons icon, string name, string fontAwesomePrefix = "fas")
+        public IconRecord(FontAwesomeIcon icon, string name, string fontAwesomePrefix = "fas")
         {
             this.Name = name;
             this.FontAwesomePrefix = fontAwesomePrefix;
@@ -66,21 +71,22 @@ namespace Creator.Components.TagHelpers.Icon
         /// </summary>
         /// <param name="icon">Type of icon</param>
         /// <param name="name">Name of icon</param>
-        public IconRecord(FriconixIcons icon, string name)
+        public IconRecord(FriconixIcon icon, string name)
         {
             this.Name = name;
             this.FriconixIcon = icon;
         }
 
         /// <summary>
-        /// Createa a new Captain Icon record
+        /// Create a new Captain Icon record
         /// </summary>
         /// <param name="icon">Type of record</param>
         /// <param name="code">Icon code</param>
-        public IconRecord(CaptainIcons icon, string code)
+        public IconRecord(CaptainIcon icon, string name, string code)
         {
-            this.Name = code;
             this.CaptainIcon = icon;
+            this.Name = name;
+            this.CaptainIconCode = code;
         }
 
         /// <summary>
@@ -89,7 +95,7 @@ namespace Creator.Components.TagHelpers.Icon
         /// <param name="icon">Type of icon</param>
         /// <param name="name">Name of the icon</param>
         /// <param name="code">Icon code</param>
-        public IconRecord(DevIcons icon, string name, string code)
+        public IconRecord(DevIcon icon, string name, string code)
         {
             this.DevIcon = icon;
             this.Name = name;
@@ -99,9 +105,10 @@ namespace Creator.Components.TagHelpers.Icon
         public string Name { get; set; }
         public string FontAwesomePrefix { get; set; } = "fas";
         public string DevIconCode { get; set; }
-        public FriconixIcons FriconixIcon { get; set; } = FriconixIcons.None;
-        public FontAwesomeIcons FontAwesomeIcon { get; set; } = FontAwesomeIcons.None;
-        public CaptainIcons CaptainIcon { get; set; } = CaptainIcons.None;
-        public DevIcons DevIcon { get; set; } = DevIcons.None;
+        public FriconixIcon FriconixIcon { get; set; } = FriconixIcon.None;
+        public FontAwesomeIcon FontAwesomeIcon { get; set; } = FontAwesomeIcon.None;
+        public CaptainIcon CaptainIcon { get; set; } = CaptainIcon.None;
+        public string CaptainIconCode { get; set; }
+        public DevIcon DevIcon { get; set; } = DevIcon.None;
     }
 }

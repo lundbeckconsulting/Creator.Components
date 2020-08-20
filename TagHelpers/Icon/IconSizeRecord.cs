@@ -11,7 +11,7 @@ namespace Creator.Components.TagHelpers.Icon
         /// <summary>
         /// The icon size
         /// </summary>
-        IconSizes Size { get; }
+        IconSize Size { get; }
 
         /// <summary>
         /// FontAwesome size string
@@ -38,7 +38,7 @@ namespace Creator.Components.TagHelpers.Icon
         /// <param name="fontAwesomeSize">FontAwesome size string</param>
         /// <param name="friconixSize">Friconix size string</param>
         /// <param name="captainIconSize">Captain Icon size string</param>
-        public IconSizeRecord(IconSizes size, string fontAwesomeSize, string friconixSize, string captainIconSize)
+        public IconSizeRecord(IconSize size, string fontAwesomeSize, string friconixSize, string captainIconSize)
         {
             this.Size = size;
             this.FontAwesomeSize = fontAwesomeSize;
@@ -46,7 +46,7 @@ namespace Creator.Components.TagHelpers.Icon
             this.CaptainIconSize = captainIconSize;
         }
 
-        public IconSizes Size { get; }
+        public IconSize Size { get; }
         public string FontAwesomeSize { get; }
         public string FriconixSize { get; }
         public string CaptainIconSize { get; }

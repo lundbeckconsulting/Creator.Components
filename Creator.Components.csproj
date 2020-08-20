@@ -8,7 +8,7 @@
     <Authors>Stein Lundbeck</Authors>
     <Company>Lundbeck Consulting</Company>
     <Product>Custom .NET Core elements by Creator framework</Product>
-    <Description>Custom tag helpers that implements styles from Creator and other elments</Description>
+    <Description>Custom assets and tag helpers that implements styles from Creator for .NET Core web apps.</Description>
     <Copyright>2020</Copyright>
     <PackageLicenseExpression></PackageLicenseExpression>
     <PackageProjectUrl>https://getcreatorframework.com</PackageProjectUrl>
