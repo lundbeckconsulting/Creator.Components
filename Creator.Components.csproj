@@ -50,4 +50,8 @@
     <ProjectReference Include="..\LC.Components\LC.Components.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="SCRIPT\" />
+  </ItemGroup>
+
 </Project>

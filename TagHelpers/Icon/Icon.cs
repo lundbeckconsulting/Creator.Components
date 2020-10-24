@@ -13,17 +13,16 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
 using System.Threading.Tasks;
-using System.Transactions;
 
 namespace Creator.Components.TagHelpers.Icon
 {
     /// <summary>
     /// Displays icons from FontAwesome, Friconix, Captain Icon and DevIcons
     /// </summary>
-    [HtmlTargetElement("icon", Attributes = "symbol", TagStructure = TagStructure.WithoutEndTag)]
-    [HtmlTargetElement("icon", Attributes = "fi-symbol", TagStructure = TagStructure.WithoutEndTag)]
-    [HtmlTargetElement("icon", Attributes = "ci-symbol", TagStructure = TagStructure.WithoutEndTag)]
-    [HtmlTargetElement("icon", Attributes = "di-symbol", TagStructure = TagStructure.WithoutEndTag)]
+    [HtmlTargetElement("icon", Attributes = "awesome", TagStructure = TagStructure.WithoutEndTag)]
+    [HtmlTargetElement("icon", Attributes = "friconix", TagStructure = TagStructure.WithoutEndTag)]
+    [HtmlTargetElement("icon", Attributes = "captain", TagStructure = TagStructure.WithoutEndTag)]
+    [HtmlTargetElement("icon", Attributes = "devicon", TagStructure = TagStructure.WithoutEndTag)]
     public sealed class IconTagHelper : TagHelperCustom, ITagHelperCustom
     {
         private readonly IIconHelper _iconHelper = new IconHelper();
@@ -35,9 +34,9 @@ namespace Creator.Components.TagHelpers.Icon
 
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
-            await base.PreProcess(context, output);
+            await base.PreProcessAsync(context, output);
 
-            if (this.Symbol != FontAwesomeIcon.None)
+            if (this.AwesomeSymbol != FontAwesomeIcon.None)
             {
                 AddContent(GetFontAwesomeTag());
             }
@@ -58,7 +57,7 @@ namespace Creator.Components.TagHelpers.Icon
                 throw new ArgumentException("No symbol property is set");
             }
 
-            await base.ProcessCustom();
+            await base.ProcessCustomAsync();
         }
 
         private ITagBuilderCustom GetDevIconTag()
@@ -77,9 +76,9 @@ namespace Creator.Components.TagHelpers.Icon
 
         private ITagBuilderCustom GetFontAwesomeTag()
         {
-            IIconRecord icon = _iconHelper.GetIcon(this.Symbol);
+            IIconRecord icon = _iconHelper.GetIcon(this.AwesomeSymbol);
 
-            if (this.Symbol == FontAwesomeIcon.None)
+            if (this.AwesomeSymbol == FontAwesomeIcon.None)
             {
                 throw new ArgumentException("FontAwesome icon not set");
             }
@@ -284,7 +283,7 @@ namespace Creator.Components.TagHelpers.Icon
         {
             string color = this.ColorProfile.ToString();
 
-            switch (this.Symbol)
+            switch (this.AwesomeSymbol)
             {
                 case FontAwesomeIcon.Close:
                 case FontAwesomeIcon.CloseFull:
@@ -301,22 +300,22 @@ namespace Creator.Components.TagHelpers.Icon
         /// <summary>
         /// Name of the icon to use with Type equal FontAwesome
         /// </summary>
-        [HtmlAttributeName("symbol")]
-        public FontAwesomeIcon Symbol { get; set; } = FontAwesomeIcon.None;
+        [HtmlAttributeName("awesome")]
+        public FontAwesomeIcon AwesomeSymbol { get; set; } = FontAwesomeIcon.None;
 
         /// <summary>
         /// Name of icon in the Friconix set of icons. Overrides FontAwesome if set
         /// </summary>
-        [HtmlAttributeName("fi-symbol")]
+        [HtmlAttributeName("friconix")]
         public FriconixIcon FriconixSymbol { get; set; } = FriconixIcon.None;
 
         /// <summary>
         /// Name of icon in the Captain Icon set of icons. Overrides FontAwesome and Friconix if set
         /// </summary>
-        [HtmlAttributeName("ci-symbol")]
+        [HtmlAttributeName("captain")]
         public CaptainIcon CaptainIconSymbol { get; set; } = CaptainIcon.None;
 
-        [HtmlAttributeName("di-symbol")]
+        [HtmlAttributeName("devicon")]
         public DevIcon DevIconSymbol { get; set; } = DevIcon.None;
 
         /// <summary>
@@ -360,7 +359,7 @@ namespace Creator.Components.TagHelpers.Icon
         /// Anchor href value if format is anchor
         /// </summary>
         [HtmlAttributeName("href")]
-        public string Href { get; set; } = "#";
+        public string Href { get; set; }
 
         /// <summary>
         /// Anchor target value if format er anchor

@@ -76,6 +76,7 @@ namespace Creator.Components.TagHelpers.Icon
             };
 
             _iconArchive.AddRange(new IIconRecord[] {
+                new IconRecord(FontAwesomeIcon.Tools, "tools"),
                 new IconRecord(FontAwesomeIcon.Save, "save", "far"),
                 new IconRecord(FontAwesomeIcon.SaveFull, "save"),
                 new IconRecord(FontAwesomeIcon.Close, "window-close", "far"),
@@ -866,7 +867,10 @@ namespace Creator.Components.TagHelpers.Icon
 
         public ITagBuilderCustom ProcessAnchorTag(ITagBuilderCustom tag, string href, TagAnchorTarget target = TagAnchorTarget.None)
         {
-            tag.AddAttribute("href", href, false);
+            if (!href.Null())
+            {
+                tag.AddAttribute("href", href, false);
+            }
 
             if (!target.Equal(TagAnchorTarget.None))
             {
@@ -1796,7 +1800,8 @@ namespace Creator.Components.TagHelpers.Icon
         PaintBrush,
         PaintBrushWide,
         PaintRoller,
-        Palette
+        Palette,
+        Tools
     }
     #endregion
 }

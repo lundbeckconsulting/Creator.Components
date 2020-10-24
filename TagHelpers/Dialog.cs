@@ -26,11 +26,11 @@ namespace Creator.Components.TagHelpers
 
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
-            await base.PreProcess(context, output);
+            await base.PreProcessAsync(context, output);
 
             output.Content.AppendLine(GetTag());
 
-            await base.ProcessCustom();
+            await base.ProcessCustomAsync();
         }
 
         private ITagBuilderCustom GetTag()

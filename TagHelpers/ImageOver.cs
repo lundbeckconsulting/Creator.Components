@@ -24,7 +24,7 @@ namespace Creator.Components.TagHelpers
 
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
-            await base.PreProcess(context, output);
+            await base.PreProcessAsync(context, output);
 
             ITagBuilderCustom tag = new TagBuilderCustom("img", TagRenderMode.SelfClosing);
             tag.ConsumeAttributes = true;
@@ -34,7 +34,7 @@ namespace Creator.Components.TagHelpers
 
             AddContent(tag);
 
-            await base.ProcessCustom();
+            await base.ProcessCustomAsync();
         }
 
         private string GetOverName() => this.SrcOver.Null() ? this.Src.Substring(0, this.Src.LastIndexOf(".")) + this.Suffix + this.Src.Substring(this.Src.LastIndexOf(".")) : this.SrcOver;

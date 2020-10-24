@@ -25,7 +25,7 @@ namespace Creator.TagHelpers
 
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
-            await base.PreProcess(context, output);
+            await base.PreProcessAsync(context, output);
 
             TagHelperContent inner = await output.GetChildContentAsync();
             TagBuilderCustom burger = new TagBuilderCustom("i", TagRenderMode.Normal);
@@ -36,7 +36,7 @@ namespace Creator.TagHelpers
 
             AddContent(burger);
 
-            await base.ProcessCustom();
+            await base.ProcessCustomAsync();
         }
 
         [HtmlAttributeName("size")]
