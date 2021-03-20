@@ -283,7 +283,6 @@ const removeClass = (type, elm, className) => {
 */
 
 
-	//# sourceMappingUrl=Creator.js.map
-
+	
 
 	//# sourceMappingUrl=Creator.Components.js.map

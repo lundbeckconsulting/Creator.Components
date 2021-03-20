@@ -6,7 +6,7 @@
 
 namespace Creator.Components.TagHelpers.Icon
 {
-    internal interface IIconSizeRecord
+    public interface IIconSizeRecord
     {
         /// <summary>
         /// The icon size
@@ -19,7 +19,7 @@ namespace Creator.Components.TagHelpers.Icon
         string FontAwesomeSize { get; }
 
         /// <summary>
-        /// Froconix size string
+        /// Friconix size string
         /// </summary>
         string FriconixSize { get; }
 
@@ -29,7 +29,7 @@ namespace Creator.Components.TagHelpers.Icon
         string CaptainIconSize { get; }
     }
 
-    internal sealed class IconSizeRecord : IIconSizeRecord
+    public sealed class IconSizeRecord : IIconSizeRecord
     {
         /// <summary>
         /// Creates a new size record with values for FontAwesome and Friconix

@@ -5,6 +5,7 @@
 
 using LundbeckConsulting.Components.Core;
 using LundbeckConsulting.Components.Extensions;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,7 +13,7 @@ using System.Linq;
 
 namespace Creator.Components.TagHelpers.Icon
 {
-    internal interface IIconHelper
+    public interface IIconHelper
     {
         /// <summary>
         /// Gets the size record equal to size
@@ -46,12 +47,19 @@ namespace Creator.Components.TagHelpers.Icon
         /// <param name="icon">Type of icon</param>
         /// <returns>Formated icon name</returns>
         string GetCaptainIconName(CaptainIcon icon);
+
+        /// <summary>
+        /// Gets a tag pointing to a Font Awesome icon
+        /// </summary>
+        /// <param name="icon"></param>
+        /// <returns></returns>
+        ITagBuilderCustom GetFontAwesomeTag(FontAwesomeIcon icon, IconSize size = IconSize.None);
     }
 
     /// <summary>
     /// Contains different functions for the IconTagHelper
     /// </summary>
-    internal sealed class IconHelper : IIconHelper
+    public sealed class IconHelper : IIconHelper
     {
         private readonly ICollection<IIconRecord> _iconArchive;
         private readonly ICollection<IIconSizeRecord> _sizeArchive;
@@ -75,6 +83,7 @@ namespace Creator.Components.TagHelpers.Icon
                 new IconSizeRecord(IconSize.X9, "fa-10x", "9", "6.2rem")
             };
 
+            #region Icon records
             _iconArchive.AddRange(new IIconRecord[] {
                 new IconRecord(FontAwesomeIcon.Tools, "tools"),
                 new IconRecord(FontAwesomeIcon.Save, "save", "far"),
@@ -83,6 +92,7 @@ namespace Creator.Components.TagHelpers.Icon
                 new IconRecord(FontAwesomeIcon.CloseFull, "save"),
                 new IconRecord(FontAwesomeIcon.CloseCircle, "times-circle", "far"),
                 new IconRecord(FontAwesomeIcon.CloseCircleFull, "save"),
+                new IconRecord(FontAwesomeIcon.BorderAll, "border-all"),
                 new IconRecord(FontAwesomeIcon.SignIn, "sign-in-alt"),
                 new IconRecord(FontAwesomeIcon.SignOut, "sign-out-alt"),
                 new IconRecord(FontAwesomeIcon.Doc, "file-alt", "far"),
@@ -92,10 +102,13 @@ namespace Creator.Components.TagHelpers.Icon
                 new IconRecord(FontAwesomeIcon.FileUpload, "file-upload"),
                 new IconRecord(FontAwesomeIcon.FileDownload, "file-download"),
                 new IconRecord(FontAwesomeIcon.FileExport, "file-export"),
+                new IconRecord(FontAwesomeIcon.Lock, "lock"),
+                new IconRecord(FontAwesomeIcon.LockOpen, "lock-open"),
                 new IconRecord(FontAwesomeIcon.Edit, "edit", "far"),
                 new IconRecord(FontAwesomeIcon.EditFull, "edit"),
                 new IconRecord(FontAwesomeIcon.Copy, "copy", "far"),
                 new IconRecord(FontAwesomeIcon.CopyFull, "copy"),
+                new IconRecord(FontAwesomeIcon.Cogs, "cogs"),
                 new IconRecord(FontAwesomeIcon.X, "times"),
                 new IconRecord(FontAwesomeIcon.ArrowLeft, "arrow-left"),
                 new IconRecord(FontAwesomeIcon.ArrowRight, "arrow-right"),
@@ -127,11 +140,13 @@ namespace Creator.Components.TagHelpers.Icon
                 new IconRecord(FontAwesomeIcon.CommentsFull, "comments"),
                 new IconRecord(FontAwesomeIcon.Like, "thumbs-up", "far"),
                 new IconRecord(FontAwesomeIcon.LikeFull, "thumbs-up"),
+                new IconRecord(FontAwesomeIcon.List, "list"),
                 new IconRecord(FontAwesomeIcon.Home, "home"),
                 new IconRecord(FontAwesomeIcon.HomeDamage, "house-damage"),
                 new IconRecord(FontAwesomeIcon.Bars, "bars"),
                 new IconRecord(FontAwesomeIcon.GitHub, "github", "fab"),
                 new IconRecord(FontAwesomeIcon.Globe, "globe"),
+                new IconRecord(FontAwesomeIcon.GlobeEurope, "globe-europe"),
                 new IconRecord(FontAwesomeIcon.AddressBook, "address-book", "far"),
                 new IconRecord(FontAwesomeIcon.AddressBookFull, "address-book"),
                 new IconRecord(FontAwesomeIcon.Folder, "folder", "far"),
@@ -206,7 +221,7 @@ namespace Creator.Components.TagHelpers.Icon
                 new IconRecord(FontAwesomeIcon.FacebookLogoSquare, "facebook-square", "fab"),
                 new IconRecord(FontAwesomeIcon.LinkedInLogo, "linkedin-in", "fab"),
                 new IconRecord(FontAwesomeIcon.LinkedInLogoSquare, "linkedin", "fab"),
-                new IconRecord(FontAwesomeIcon.DeleteTrash, "trast-alt", "far"),
+                new IconRecord(FontAwesomeIcon.DeleteTrash, "trash-alt", "far"),
                 new IconRecord(FontAwesomeIcon.DeleteTrashBold, "trash-alt"),
                 new IconRecord(FontAwesomeIcon.DeleteTrashFull, "trash"),
                 new IconRecord(FontAwesomeIcon.DeleteMinusCircleFull, "minus-circle"),
@@ -215,6 +230,8 @@ namespace Creator.Components.TagHelpers.Icon
                 new IconRecord(FontAwesomeIcon.DeleteMinusSquareFull, "minus-square"),
                 new IconRecord(FontAwesomeIcon.DeleteUser, "user-times"),
                 new IconRecord(FontAwesomeIcon.DeleteUserMinus, "user-minus"),
+                new IconRecord(FontAwesomeIcon.Eye, "eye", "far"),
+                new IconRecord(FontAwesomeIcon.EyeBold, "eye", "fas"),
                 new IconRecord(FontAwesomeIcon.GoogleIcon, "google", "fab"),
                 new IconRecord(FontAwesomeIcon.GooglePlay, "google-play", "fab"),
                 new IconRecord(FontAwesomeIcon.GoogleDrive, "google-drive", "fab"),
@@ -237,8 +254,11 @@ namespace Creator.Components.TagHelpers.Icon
                 new IconRecord(FontAwesomeIcon.PaintBrush, "paint-brush"),
                 new IconRecord(FontAwesomeIcon.PaintBrushWide, "brush"),
                 new IconRecord(FontAwesomeIcon.PaintRoller, "paint-roller"),
-                new IconRecord(FontAwesomeIcon.Palette, "palette")
-
+                new IconRecord(FontAwesomeIcon.Palette, "palette"),
+                new IconRecord(FontAwesomeIcon.IdBadge, "id-badge", "far"),
+                new IconRecord(FontAwesomeIcon.IdBadgeFull, "id-badge"),
+                new IconRecord(FontAwesomeIcon.IdCard, "id-card", "far"),
+                new IconRecord(FontAwesomeIcon.IdCardFull, "id-card")
             });
 
             _iconArchive.AddRange(new IIconRecord[] {
@@ -827,6 +847,7 @@ namespace Creator.Components.TagHelpers.Icon
                 new IconRecord(DevIcon.SQLlite, "sqllite", "6c4"),
                 new IconRecord(DevIcon.VIM, "vim", "6c5")
             });
+            #endregion
         }
 
         public IIconSizeRecord GetSize(IconSize size) => _sizeArchive.Single(rc => rc.Size == size);
@@ -921,9 +942,22 @@ namespace Creator.Components.TagHelpers.Icon
 
             return result;
         }
+
+        public ITagBuilderCustom GetFontAwesomeTag(FontAwesomeIcon icon, IconSize size = IconSize.None)
+        {
+            ITagBuilderCustom result = new TagBuilderCustom("i", TagRenderMode.Normal, false);
+            result.AddCssClassRange("fa-icon", _iconArchive.Single(icn => icn.FontAwesomeIcon == icon).FontAwesomePrefix, $"fa-{_iconArchive.Single(icn => icn.FontAwesomeIcon == icon).Name}");
+
+            if (size != IconSize.None)
+            {
+                result.AddCssClass(_sizeArchive.Single(sz => sz.Size == size).FontAwesomeSize);
+            }
+
+            return result;
+        }
     }
 
-    #region Enums
+    #region Enum's
     /// <summary>
     /// Supported output formats when rendering Font Awesome icon
     /// </summary>
@@ -953,6 +987,7 @@ namespace Creator.Components.TagHelpers.Icon
     /// </summary>
     public enum IconSize
     {
+        None,
         XXS,
         XS,
         SM,
@@ -1647,6 +1682,7 @@ namespace Creator.Components.TagHelpers.Icon
         AmazonPay,
         AmazonPayIcon,
         AmericanExpress,
+        BorderAll,
         AngleDown,
         AngleLeft,
         AngleRight,
@@ -1674,6 +1710,7 @@ namespace Creator.Components.TagHelpers.Icon
         CloseFull,
         Code,
         CodeLaptop,
+        Cogs,
         Comment,
         CommentFull,
         Comments,
@@ -1699,6 +1736,8 @@ namespace Creator.Components.TagHelpers.Icon
         DownloadCloud,
         Edit,
         EditFull,
+        Eye,
+        EyeBold,
         Envelope,
         EnvelopeFull,
         EnvelopeOpen,
@@ -1719,6 +1758,7 @@ namespace Creator.Components.TagHelpers.Icon
         FolderPlusFull,
         GitHub,
         Globe,
+        GlobeEurope,
         GoogleDrive,
         GoogleIcon,
         GooglePlay,
@@ -1728,6 +1768,10 @@ namespace Creator.Components.TagHelpers.Icon
         Hashtag,
         Home,
         HomeDamage,
+        IdBadge,
+        IdBadgeFull,
+        IdCard,
+        IdCardFull,
         Info,
         InfoCircle,
         InstagramIcon,
@@ -1736,8 +1780,11 @@ namespace Creator.Components.TagHelpers.Icon
         LaptopCode,
         Like,
         LikeFull,
+        List,
         LinkedInLogo,
         LinkedInLogoSquare,
+        Lock,
+        LockOpen,
         Mastercard,
         Messenger,
         Mobile,

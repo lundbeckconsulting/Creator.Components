@@ -5,7 +5,7 @@
 
 namespace Creator.Components.TagHelpers.Icon
 {
-    internal interface IIconRecord
+    public interface IIconRecord
     {
         /// <summary>
         /// Icon name
@@ -51,7 +51,7 @@ namespace Creator.Components.TagHelpers.Icon
     /// <summary>
     /// Contains information about either a FontAwesome or Friconix icon
     /// </summary>
-    internal sealed class IconRecord : IIconRecord
+    public sealed class IconRecord : IIconRecord
     {
         /// <summary>
         /// Creates a new FontAwesome record

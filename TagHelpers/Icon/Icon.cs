@@ -83,10 +83,7 @@ namespace Creator.Components.TagHelpers.Icon
                 throw new ArgumentException("FontAwesome icon not set");
             }
 
-            ITagBuilderCustom tag = new TagBuilderCustom("i", TagRenderMode.Normal, false);
-            tag.AddCssClassRange("fa-icon", icon.FontAwesomePrefix, $"fa-{icon.Name.ToLower()}", _iconHelper.GetSize(this.Size).FontAwesomeSize);
-
-            return GetWrapTag(tag);
+            return GetWrapTag(_iconHelper.GetFontAwesomeTag(this.AwesomeSymbol, this.Size));
         }
 
         private ITagBuilderCustom GetFriconixTag()
@@ -257,10 +254,14 @@ namespace Creator.Components.TagHelpers.Icon
         private ITagBuilderCustom GetWrapTag(ITagBuilderCustom iconTag)
         {
             ITagBuilderCustom result = new TagBuilderCustom(_iconHelper.GetFormatTagName(this.Format), false);
-            result.AddCssClassRange("creator-icon", "flex-center-center", this.GetColorProfile());
+            result.AddCssClassRange("creator-icon", this.GetColorProfile());
             result.ConsumeAttributes = true;
             result.AddChild(iconTag);
 
+            if (this.Pointer)
+            {
+                result.AddCssClass("pointerHover");
+            }
 
             if (this.Format == IconOutputFormat.Anchor)
             {
@@ -270,10 +271,9 @@ namespace Creator.Components.TagHelpers.Icon
             if (!this.Text.Null())
             {
                 ITagBuilderCustom txt = new TagBuilderCustom("span");
-                txt.AddCssClass("icon-text");
-                txt.AddCssClass("mrg-sm-left");
+                txt.AddCssClassRange("text");
                 txt.InnerHtml.SetHtmlContent(this.Text);
-                result.InnerHtml.AppendHtml(txt);
+                result.AddChild(txt);
             }
 
             return result;
@@ -401,7 +401,10 @@ namespace Creator.Components.TagHelpers.Icon
         /// Icon size
         /// </summary>
         [HtmlAttributeName("size")]
-        public IconSize Size { get; set; } = IconSize.Normal;
+        public IconSize Size { get; set; } = IconSize.SM;
+
+        [HtmlAttributeName("pointer")]
+        public bool Pointer { get; set; } = false;
         #endregion
     }
 }
