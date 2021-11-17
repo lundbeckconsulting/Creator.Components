@@ -8,3 +8,6 @@
         tag.classList.add("hide");
     }
 };
+
+
+	//# sourceMappingUrl=Utility.js.map

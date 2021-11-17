@@ -3,9 +3,9 @@
     @Author         : Stein Lundbeck
 */
 
-using LundbeckConsulting.Components.Core;
-using LundbeckConsulting.Components.Core.Repos;
-using LundbeckConsulting.Components.Core.TagHelpers;
+using LundbeckConsulting.Components.Core.Components;
+using LundbeckConsulting.Components.Core.Components.Repos;
+using LundbeckConsulting.Components.Core.Components.TagHelpers;
 using LundbeckConsulting.Components.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -26,20 +26,20 @@ namespace Creator.Components.TagHelpers
         {
             await base.PreProcessAsync(context, output);
 
-            ITagBuilderCustom tag = new TagBuilderCustom("img", TagRenderMode.SelfClosing);
-            tag.ConsumeAttributes = true;
-            tag.AddAttribute("src", this.Src, false);
-            tag.AddAttribute(GetScript(true));
-            tag.AddAttribute(GetScript(false));
+            TagBuilderCustom tag = new TagBuilderCustom("img");
+            tag.TagRenderMode = TagRenderMode.SelfClosing;
+            tag.AddAttribute("src", this.Src);
+            tag.Attributes.Add(GetScript(true));
+            tag.Attributes.Add(GetScript(false));
 
             AddContent(tag);
 
-            await base.ProcessCustomAsync();
+            await base.ProcessAsync();
         }
 
         private string GetOverName() => this.SrcOver.Null() ? this.Src.Substring(0, this.Src.LastIndexOf(".")) + this.Suffix + this.Src.Substring(this.Src.LastIndexOf(".")) : this.SrcOver;
 
-        private ITagBuilderCustomAttribute GetScript(bool onOver)
+        private TagHelperAttribute GetScript(bool onOver)
         {
             string val;
 
@@ -52,9 +52,7 @@ namespace Creator.Components.TagHelpers
                 val = "this.src='" + this.Src + "'";
             }
 
-            ITagBuilderCustomAttribute result = new TagBuilderCustomAttribute(onOver ? "onmouseover" : "onmouseout", val, false);
-
-            return result;
+            return new TagHelperAttribute(onOver ? "onmouseover" : "onmouseout", val);
         }
 
         [HtmlAttributeName("src")]

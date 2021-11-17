@@ -4,15 +4,14 @@
 */
 
 using LundbeckConsulting.Components.Core;
-using LundbeckConsulting.Components.Core.Repos;
-using LundbeckConsulting.Components.Core.TagHelpers;
+using LundbeckConsulting.Components.Core.Components;
+using LundbeckConsulting.Components.Core.Components.Repos;
+using LundbeckConsulting.Components.Core.Components.TagHelpers;
 using LundbeckConsulting.Components.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
-using System;
-using System.Threading.Tasks;
 
 namespace Creator.Components.TagHelpers.Icon
 {
@@ -57,10 +56,10 @@ namespace Creator.Components.TagHelpers.Icon
                 throw new ArgumentException("No symbol property is set");
             }
 
-            await base.ProcessCustomAsync();
+            await base.ProcessAsync();
         }
 
-        private ITagBuilderCustom GetDevIconTag()
+        private TagBuilderCustom GetDevIconTag()
         {
             if (this.DevIconSymbol == DevIcon.None)
             {
@@ -68,13 +67,13 @@ namespace Creator.Components.TagHelpers.Icon
             }
 
             IIconRecord icon = _iconHelper.GetIcon(this.DevIconSymbol);
-            ITagBuilderCustom tag = new TagBuilderCustom("i", TagRenderMode.Normal, false);
+            TagBuilderCustom tag = new TagBuilderCustom("i");
             tag.AddCssClassRange("di-icon", $"devicon-{icon.Name}", $"size-{this.Size}");
 
             return GetWrapTag(tag);
         }
 
-        private ITagBuilderCustom GetFontAwesomeTag()
+        private TagBuilderCustom GetFontAwesomeTag()
         {
             IIconRecord icon = _iconHelper.GetIcon(this.AwesomeSymbol);
 
@@ -86,7 +85,7 @@ namespace Creator.Components.TagHelpers.Icon
             return GetWrapTag(_iconHelper.GetFontAwesomeTag(this.AwesomeSymbol, this.Size));
         }
 
-        private ITagBuilderCustom GetFriconixTag()
+        private TagBuilderCustom GetFriconixTag()
         {
             IIconRecord icon = _iconHelper.GetIcon(this.FriconixSymbol);
 
@@ -95,7 +94,7 @@ namespace Creator.Components.TagHelpers.Icon
                 throw new ArgumentException("Friconix icon not set");
             }
 
-            ITagBuilderCustom tag = new TagBuilderCustom("i", TagRenderMode.Normal, false);
+            TagBuilderCustom tag = new TagBuilderCustom("i");
             tag.AddCssClass("fi-icon");
             tag.AddCssClass($"fi-{GetShape(this.Shape)}{GetThickness(this.Thickness)}{GetStyle(this.FriconixStyle)}{GetDirection(this.Direction)}{GetEffect(this.Effect)}{_iconHelper.GetSize(this.Size).FriconixSize}-{icon.Name.ToLower()}");
 
@@ -234,7 +233,7 @@ namespace Creator.Components.TagHelpers.Icon
             return GetWrapTag(tag);
         }
 
-        private ITagBuilderCustom GetCaptainIconTag()
+        private TagBuilderCustom GetCaptainIconTag()
         {
             IIconRecord icon = _iconHelper.GetIcon(this.CaptainIconSymbol);
 
@@ -243,19 +242,18 @@ namespace Creator.Components.TagHelpers.Icon
                 throw new ArgumentException("Captain Icon not set");
             }
 
-            ITagBuilderCustom tag = new TagBuilderCustom("i");
+            TagBuilderCustom tag = new TagBuilderCustom("i");
             tag.AddCssClass("ci-icon");
             tag.AddCssClass($"ci-icon-{_iconHelper.GetCaptainIconName(icon.CaptainIcon)}");
-            tag.AddAttribute("style", $"font-size: {_iconHelper.GetSize(this.Size).CaptainIconSize};", false);
+            tag.Attributes.Add("style", $"font-size: {_iconHelper.GetSize(this.Size).CaptainIconSize};");
 
             return GetWrapTag(tag);
         }
 
-        private ITagBuilderCustom GetWrapTag(ITagBuilderCustom iconTag)
+        private TagBuilderCustom GetWrapTag(TagBuilderCustom iconTag)
         {
-            ITagBuilderCustom result = new TagBuilderCustom(_iconHelper.GetFormatTagName(this.Format), false);
+            TagBuilderCustom result = new TagBuilderCustom(_iconHelper.GetFormatTagName(this.Format));
             result.AddCssClassRange("creator-icon", this.GetColorProfile());
-            result.ConsumeAttributes = true;
             result.AddChild(iconTag);
 
             if (this.Pointer)
@@ -270,7 +268,7 @@ namespace Creator.Components.TagHelpers.Icon
 
             if (!this.Text.Null())
             {
-                ITagBuilderCustom txt = new TagBuilderCustom("span");
+                TagBuilderCustom txt = new TagBuilderCustom("span");
                 txt.AddCssClassRange("text");
                 txt.InnerHtml.SetHtmlContent(this.Text);
                 result.AddChild(txt);

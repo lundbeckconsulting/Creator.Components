@@ -1,53 +1,28 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>1.0.0.2-beta</Version>
-    <Authors>Stein Lundbeck</Authors>
-    <Company>Lundbeck Consulting</Company>
-    <Product>Custom .NET Core elements by Creator framework</Product>
-    <Description>Custom assets and tag helpers that implements styles from Creator for .NET Core web apps.</Description>
-    <Copyright>2020</Copyright>
-    <PackageLicenseExpression></PackageLicenseExpression>
-    <PackageProjectUrl>https://getcreatorframework.com</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/lundbeckconsulting/Creator.Components</RepositoryUrl>
-    <RepositoryType>.NET Core class library</RepositoryType>
-    <PackageTags>Lundbeck Consulting, Creator, .NET Core, TagHelpers, Responsive Framework, open source</PackageTags>
-    <NeutralLanguage>English</NeutralLanguage>
-    <PackageIcon>creator-components-logo-sm.png</PackageIcon>
-    <PackageReleaseNotes>First official release</PackageReleaseNotes>
-    <ApplicationIcon>creator-logo.ico</ApplicationIcon>
-    <AssemblyVersion>1.0.0.2</AssemblyVersion>
-    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<ApplicationIcon>creator-logo.ico</ApplicationIcon>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-  
-  <ItemGroup>
-    <None Include="..\..\Misc\LC.Shared\IMAGE\creator-components-logo-sm.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-    <None Include="LICENSE.md">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<Content Include="creator-logo.ico" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\LC.Components.Core\LC.Components.Core.csproj" />
-    <ProjectReference Include="..\LC.Components\LC.Components.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Razor" Version="2.2.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\LC.Components.Core\LC.Components.Core.csproj" />
+	</ItemGroup>
 
 </Project>

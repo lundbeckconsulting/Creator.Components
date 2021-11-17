@@ -3,16 +3,13 @@
     @Author                       : Stein Lundbeck
 */
 
-using LundbeckConsulting.Components.Core;
-using LundbeckConsulting.Components.Core.Repos;
-using LundbeckConsulting.Components.Core.TagHelpers;
+using LundbeckConsulting.Components.Core.Components.Repos;
+using LundbeckConsulting.Components.Core.Components.TagHelpers;
 using LundbeckConsulting.Components.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
-using System.Collections.ObjectModel;
 
 namespace Creator.Components.TagHelpers
 {

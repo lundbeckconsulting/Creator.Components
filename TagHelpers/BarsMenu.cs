@@ -4,10 +4,9 @@
 */
 
 using Creator.Components;
-using Creator.Components.TagHelpers;
-using LundbeckConsulting.Components.Core;
-using LundbeckConsulting.Components.Core.Repos;
-using LundbeckConsulting.Components.Core.TagHelpers;
+using LundbeckConsulting.Components.Core.Components;
+using LundbeckConsulting.Components.Core.Components.Repos;
+using LundbeckConsulting.Components.Core.Components.TagHelpers;
 using LundbeckConsulting.Components.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Html;
@@ -28,7 +27,7 @@ namespace Creator.TagHelpers
             await base.PreProcessAsync(context, output);
 
             TagHelperContent inner = await output.GetChildContentAsync();
-            TagBuilderCustom burger = new TagBuilderCustom("i", TagRenderMode.Normal);
+            TagBuilderCustom burger = new TagBuilderCustom("i");
 
             burger.InnerHtml.SetHtmlContent(inner.ToHtmlString());
             burger.AddAttribute("id", "creatorBarsMenu");
@@ -36,7 +35,7 @@ namespace Creator.TagHelpers
 
             AddContent(burger);
 
-            await base.ProcessCustomAsync();
+            await base.ProcessAsync();
         }
 
         [HtmlAttributeName("size")]

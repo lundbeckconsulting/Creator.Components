@@ -3,9 +3,9 @@
     @Author         : Stein Lundbeck
 */
 
-using LundbeckConsulting.Components.Core;
-using LundbeckConsulting.Components.Core.Repos;
-using LundbeckConsulting.Components.Core.TagHelpers;
+using LundbeckConsulting.Components.Core.Components;
+using LundbeckConsulting.Components.Core.Components.Repos;
+using LundbeckConsulting.Components.Core.Components.TagHelpers;
 using LundbeckConsulting.Components.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Html;
@@ -30,12 +30,12 @@ namespace Creator.Components.TagHelpers
 
             output.Content.AppendLine(GetTag());
 
-            await base.ProcessCustomAsync();
+            await base.ProcessAsync();
         }
 
-        private ITagBuilderCustom GetTag()
+        private TagBuilderCustom GetTag()
         {
-            ITagBuilderCustom result = new TagBuilderCustom("dialog", ContentPosition.PostElement, TagRenderMode.Normal, true, new string[] { "id", "style", "class" }, false, true);
+            TagBuilderCustom result = new TagBuilderCustom("dialog");
             TagBuilder content = new TagBuilder("content");
             TagBuilder header = new TagBuilder("header");
             TagBuilder title = new TagBuilder("span");
@@ -43,18 +43,17 @@ namespace Creator.Components.TagHelpers
             TagBuilder body = new TagBuilder("section");
             TagBuilder okCommand = new TagBuilder("button");
 
-            result.AddAttribute("role", "dialog", false);
-            result.AddAttribute("aria-labelledby", "title", false);
+            result.AddAttribute("role", "dialog");
+            result.AddAttribute("aria-labelledby", "title");
 
             if (!this.Description.Null())
             {
-                result.AddAttribute("aria-describedby", this.Description, false);
+                result.AddAttribute("aria-describedby", this.Description);
             }
 
             title.AddCssClass("title");
-            title.InnerHtml.Append(this.Title);
+            title.InnerHtml.Append(this.SiteTitle);
             closeIcon.AddCssClass("close-command");
-            body.InnerHtml.AppendHtml(this.InnerContent.GetContent());
             body.AddCssClass("body");
             okCommand.AddCssClass("ok-command");
             okCommand.InnerHtml.Append("Ok");
@@ -64,7 +63,7 @@ namespace Creator.Components.TagHelpers
                 header.AddCssClass("solid");
             }
 
-            title.InnerHtml.Append(this.Title);
+            title.InnerHtml.Append(this.SiteTitle);
             title.AddCssClass("title");
             header.InnerHtml.AppendHtml(title);
             header.InnerHtml.AppendHtml(closeIcon);
@@ -74,7 +73,7 @@ namespace Creator.Components.TagHelpers
 
             if (this.Show)
             {
-                result.AddAttribute("open", "open", false);
+                result.AddAttribute("open", "open");
             }
 
             result.AddCssClass("dialog-" + this.Color.ToLower() + "-" + this.Size.ToLower());
@@ -104,7 +103,7 @@ namespace Creator.Components.TagHelpers
         /// Title of dialog
         /// </summary>
         [HtmlAttributeName("title")]
-        public new string Title { get; set; } = default;
+        public new string SiteTitle { get; set; } = default;
 
         /// <summary>
         /// If true the dialog will be visible on load
